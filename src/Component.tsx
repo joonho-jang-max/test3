@@ -929,7 +929,7 @@ export default function Component() {
               </div>
             </div>
             <div className="absolute content-stretch flex gap-[8px] inset-[36px_0_0_0] items-start px-[var(--padding\/m,16px)]" data-name="List" data-node-id="I222:42028;20149:229666">
-              <div className="flex-[1_0_0] h-full min-h-px min-w-px relative" data-name="Portrait/normal" data-node-id="I222:42028;20149:229667">
+              <div className="w-[109px] h-[234px] shrink-0 relative" data-name="Portrait/normal" data-node-id="I222:42028;20149:229667">
                 <div className="absolute inset-[0_0_76px_0] rounded-[var(--radius\/m,4px)]" data-name="Portrait" data-node-id="I222:42028;20149:229667;20149:210448">
                   <div className="absolute inset-0 rounded-[var(--radius\/m,4px)]" data-name="imageFill" data-node-id="I222:42028;20149:229667;20149:210448;1313:24088">
                     <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[var(--radius\/m,4px)] size-full" src={imgImageFill} />
@@ -990,7 +990,7 @@ export default function Component() {
                   </div>
                 </div>
               </div>
-              <div className="flex-[1_0_0] h-full min-h-px min-w-px relative" data-name="Portrait/normal" data-node-id="I222:42028;20149:229668">
+              <div className="w-[109px] h-[234px] shrink-0 relative" data-name="Portrait/normal" data-node-id="I222:42028;20149:229668">
                 <div className="absolute inset-[0_0_76px_0] rounded-[var(--radius\/m,4px)]" data-name="Portrait" data-node-id="I222:42028;20149:229668;20149:210451">
                   <div className="absolute inset-0 rounded-[var(--radius\/m,4px)]" data-name="imageFill" data-node-id="I222:42028;20149:229668;20149:210451;1313:24088">
                     <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[var(--radius\/m,4px)] size-full" src={imgImageFill} />
@@ -1048,7 +1048,7 @@ export default function Component() {
                   </div>
                 </div>
               </div>
-              <div className="flex-[1_0_0] h-full min-h-px min-w-px relative" data-name="Portrait/normal" data-node-id="I222:42028;20149:229669">
+              <div className="w-[109px] h-[234px] shrink-0 relative" data-name="Portrait/normal" data-node-id="I222:42028;20149:229669">
                 <div className="absolute inset-[0_0_76px_0] rounded-[var(--radius\/m,4px)]" data-name="Portrait" data-node-id="I222:42028;20149:229669;20149:210448">
                   <div className="absolute inset-0 rounded-[var(--radius\/m,4px)]" data-name="imageFill" data-node-id="I222:42028;20149:229669;20149:210448;1313:24088">
                     <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[var(--radius\/m,4px)] size-full" src={imgImageFill} />
@@ -1315,7 +1315,7 @@ export default function Component() {
         </div>
         <Line className="absolute h-0 left-0 right-0 top-0" color="L08" type="0.5" />
       </div>
-      <div className="absolute bottom-[94px] contents right-[20px]" data-node-id="222:43027">
+      <div className="absolute bottom-[94px] right-[20px]" data-node-id="222:43027">
         <div className="absolute border border-[rgba(0,0,0,0.05)] border-solid bottom-[94px] h-[58px] right-[20px] rounded-[25px] w-[63px]" data-node-id="222:43028" style={{ backgroundImage: "linear-gradient(rgb(0, 220, 100) 0%, rgb(255, 255, 255) 100%), linear-gradient(90deg, rgb(0, 220, 100) 0%, rgb(0, 220, 100) 100%)" }} />
         <div className="absolute bottom-[94px] h-[69px] right-[20px] rounded-[25px] w-[63px]" data-name="ㅅㄷㅅㅁ1 1" data-node-id="222:43029">
           <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[25px]">
@@ -1323,7 +1323,7 @@ export default function Component() {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-[154.53px] contents right-[3px]" data-node-id="222:43030">
+      <div className="absolute bottom-[154.53px] right-[3px]" data-node-id="222:43030">
         <div className="absolute bottom-[154.53px] h-[29.472px] right-[3px] w-[101px]" data-name="Union" data-node-id="222:43031">
           <img alt="" className="absolute block max-w-none size-full" src={imgUnion} />
         </div>
