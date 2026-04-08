@@ -91,7 +91,7 @@ type ToolbarIcNavbarHomeProps = {
   state?: boolean;
 };
 
-function ToolbarIcNavbarHome({ className, state = true }: ToolbarIcNavbarHomeProps) {
+function ToolbarIcNavbarHome({ className, state: _state = true }: ToolbarIcNavbarHomeProps) {
   return (
     <div className={className || "relative size-[22px]"} data-node-id="222:41863">
       <div className="-translate-x-1/2 -translate-y-1/2 absolute left-1/2 size-[18.095px] top-1/2" data-name="Fill 3" data-node-id="222:41864">
@@ -266,7 +266,7 @@ type ElementSystemIOsTimeDarkProps = {
   color?: "Green" | "Red" | "Clear" | "Blue";
 };
 
-function ElementSystemIOsTimeDark({ className, color = "Clear" }: ElementSystemIOsTimeDarkProps) {
+function ElementSystemIOsTimeDark({ className, color: _color = "Clear" }: ElementSystemIOsTimeDarkProps) {
   return (
     <div className={className || "h-[21px] overflow-clip relative rounded-[20px] w-[54px]"} data-node-id="1:632">
       <div className="-translate-x-1/2 -translate-y-1/2 absolute h-[15px] left-[calc(50%+0.5px)] top-1/2 w-[33px]" data-name="9:41" data-node-id="1:633">
