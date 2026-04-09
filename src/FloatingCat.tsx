@@ -55,15 +55,15 @@ export default function FloatingCat() {
   return (
     <div style={{
       position: 'fixed',
-      bottom: 82,  /* toolbar 50 + 여백 16 + 16 */
+      bottom: 66,  /* toolbar 50 + 여백 16 */
       right: 16,
       zIndex: 999,
       cursor: 'pointer',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-end',  /* 우측 정렬 */
+      alignItems: 'flex-end',
     }}>
-      {/* 말풍선: 우측 정렬, 텍스트 늘수록 왼쪽으로 */}
+      {/* 말풍선 */}
       <div style={{
         position: 'relative',
         background: '#111',
@@ -74,19 +74,19 @@ export default function FloatingCat() {
         padding: '6px 12px',
         borderRadius: 20,
         whiteSpace: 'nowrap',
-        marginBottom: 3,
+        marginBottom: 9,  /* 꼬리 끝(~6px) + gap(3px) */
       }}>
         일이삼사오육칠팔구십
-        {/* 꼬리: cat 이미지 중앙(31px from right) */}
+        {/* 꼬리: 회전 사각형 r=1, cat 중앙 정렬 */}
         <div style={{
           position: 'absolute',
-          bottom: -5,
-          right: 26,  /* 31 - 5(half tail width) */
-          width: 0,
-          height: 0,
-          borderLeft: '5px solid transparent',
-          borderRight: '5px solid transparent',
-          borderTop: '6px solid #111',
+          bottom: -4,   /* bubble 안으로 4px 걸침 */
+          right: 27,    /* cat 중앙(31px) - 사각형 절반(4px) */
+          width: 8,
+          height: 8,
+          background: '#111',
+          transform: 'rotate(45deg)',
+          borderRadius: 1,
         }}/>
       </div>
       <canvas
