@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const BASE = import.meta.env.BASE_URL
+
 /* ── palette ─────────────────────────────── */
 const NAV      = '#000'
 const LIGHT_BG = '#f7f6f3'
@@ -43,9 +45,9 @@ function NavBar() {
         <div style={{ background: ORANGE, borderRadius: 14, padding: '5px 10px' }}>
           <span style={{ color: WHITE, fontSize: 12, fontWeight: 800 }}>무료쿠키!</span>
         </div>
-        {/* cookie C icon */}
-        <div style={{ width: 30, height: 30, borderRadius: 15, background: ORANGE, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ color: WHITE, fontSize: 16, fontWeight: 900 }}>C</span>
+        {/* cookie icon */}
+        <div style={{ width: 30, height: 30, borderRadius: 15, overflow: 'hidden', flexShrink: 0 }}>
+          <img src={`${BASE}figma/cookie_nav.png`} style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
         </div>
         {/* bell */}
         <button style={{ background: 'none', border: 'none', padding: 4, cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
@@ -82,95 +84,56 @@ function TabBar({ active, setActive }: { active: number; setActive: (i: number) 
 /* ── BenefitBanner ───────────────────────── */
 function BenefitBanner() {
   return (
-    <div style={{
-      background: 'linear-gradient(135deg, #fce4f8 0%, #e8d5ff 40%, #d4b8ff 100%)',
-      position: 'relative', padding: '14px 16px 32px', overflow: 'hidden',
-    }}>
-      {/* floating diamonds */}
-      {[
-        { top: 8, left: 40, size: 10, opacity: 0.4 },
-        { top: 20, right: 80, size: 14, opacity: 0.3 },
-        { top: 50, left: 15, size: 8, opacity: 0.35 },
-        { bottom: 30, left: 100, size: 12, opacity: 0.3 },
-        { bottom: 10, right: 60, size: 9, opacity: 0.4 },
-      ].map((d, i) => (
-        <div key={i} style={{
-          position: 'absolute', ...d,
-          width: d.size, height: d.size,
-          background: PURPLE, opacity: d.opacity,
-          transform: 'rotate(45deg)', borderRadius: 2,
-        }}/>
-      ))}
-
-      {/* badges */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16, position: 'relative', zIndex: 1 }}>
-        <span style={{ background: DARK, color: WHITE, fontSize: 11, fontWeight: 800, padding: '3px 8px', borderRadius: 4 }}>NEW</span>
-        <span style={{ background: '#ff2d78', color: WHITE, fontSize: 11, fontWeight: 800, padding: '3px 12px', borderRadius: 20 }}>참여하기</span>
-      </div>
-
-      {/* title */}
-      <div style={{ fontSize: 28, fontWeight: 900, color: DARK, lineHeight: 1.2, marginBottom: 14, position: 'relative', zIndex: 1 }}>
-        웰컴 <span style={{ color: PURPLE }}>쿠키</span> 선물
-      </div>
-
-      {/* hashtag bubbles */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <div style={{ background: WHITE, borderRadius: 12, padding: '8px 14px', marginBottom: 8, display: 'inline-block' }}>
-          <span style={{ color: DARK, fontSize: 14, fontWeight: 600 }}>
-            #딱 24시간만 <span style={{ color: PURPLE, fontWeight: 800 }}>100%</span> 당첨!
-          </span>
-        </div>
-        <div style={{ color: '#4c1d95', fontSize: 14, fontWeight: 600, paddingLeft: 4 }}>
-          #만나서 반가워요!
-        </div>
-      </div>
-
-      {/* cookie image */}
-      <div style={{
-        position: 'absolute', right: 16, bottom: 24,
-        fontSize: 80, lineHeight: 1, opacity: 0.92, zIndex: 1,
-        filter: 'drop-shadow(2px 4px 8px rgba(0,0,0,0.15))',
-      }}>🍪</div>
-
-      {/* page indicator */}
-      <div style={{
-        position: 'absolute', bottom: 10, right: 14, zIndex: 2,
-        background: 'rgba(100,60,160,0.25)', borderRadius: 10,
-        padding: '2px 8px', color: '#3b0764', fontSize: 11, fontWeight: 600,
-      }}>2/14 ›</div>
+    <div style={{ position: 'relative' }}>
+      {/* 실제 Figma 이미지 */}
+      <img
+        src={`${BASE}figma/cookie2.png`}
+        style={{ display: 'block', width: '100%' }}
+        alt="웰컴 쿠키 선물"
+      />
+      {/* NEW 뱃지 */}
+      <span style={{
+        position: 'absolute', top: 12, left: 12,
+        background: DARK, color: WHITE,
+        fontSize: 11, fontWeight: 800, padding: '3px 8px', borderRadius: 4,
+      }}>NEW</span>
+      {/* 참여하기 뱃지 */}
+      <span style={{
+        position: 'absolute', top: 12, right: 12,
+        background: '#ff2d78', color: WHITE,
+        fontSize: 11, fontWeight: 800, padding: '3px 12px', borderRadius: 20,
+      }}>참여하기</span>
+      {/* 페이지 인디케이터 */}
+      <span style={{
+        position: 'absolute', bottom: 10, right: 12,
+        background: 'rgba(80,40,130,0.45)', color: WHITE,
+        fontSize: 11, fontWeight: 600, padding: '2px 8px', borderRadius: 10,
+      }}>2/14 ›</span>
     </div>
   )
 }
 
 /* ── BookCard ────────────────────────────── */
 function BookCard({ promoText, badge }: { promoText: string; badge?: string }) {
-  // gradient palette for cover art variety
-  const covers = [
-    'linear-gradient(160deg,#1a0e2e 0%,#2d1b4e 40%,#1e0a3c 100%)',
-    'linear-gradient(160deg,#0f1e2e 0%,#1e3a5f 40%,#0a1e3c 100%)',
-    'linear-gradient(160deg,#2e1a0e 0%,#4e2d1b 40%,#3c1e0a 100%)',
-    'linear-gradient(160deg,#0e2e1a 0%,#1b4e2d 40%,#0a3c1e 100%)',
-    'linear-gradient(160deg,#2e0e1a 0%,#4e1b2d 40%,#3c0a1e 100%)',
-  ]
-  const cover = covers[Math.floor(Math.random() * covers.length)]
-
   return (
     <div style={{ width: 106, flexShrink: 0 }}>
       {/* cover */}
-      <div style={{ width: 106, height: 148, borderRadius: 8, overflow: 'hidden', position: 'relative', marginBottom: 8, background: cover }}>
-        {/* character silhouette hint */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.6) 100%)' }}/>
-        {/* top icons */}
-        <div style={{ position: 'absolute', top: 6, left: 6, width: 22, height: 22, borderRadius: 11, border: '1.5px solid rgba(255,255,255,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div style={{ width: 106, height: 148, borderRadius: 8, overflow: 'hidden', position: 'relative', marginBottom: 8 }}>
+        {/* 실제 책 표지 */}
+        <img src={`${BASE}figma/book_cover.jpg`} style={{ width: '100%', height: '100%', objectFit: 'cover' }}/>
+        {/* 타이머 아이콘 */}
+        <div style={{ position: 'absolute', top: 6, left: 6, width: 22, height: 22, borderRadius: 11, border: '1.5px solid rgba(255,255,255,0.8)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.3)' }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
         </div>
-        <div style={{ position: 'absolute', top: 6, right: 6 }}>
+        {/* 트로피 아이콘 */}
+        <div style={{ position: 'absolute', top: 4, right: 4 }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="#22c55e"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
         </div>
-        {/* bottom badge */}
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'rgba(0,0,0,0.75)', padding: '4px 6px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        {/* SERIES EDITION 뱃지 */}
+        <img src={`${BASE}figma/badge_c.png`} style={{ position: 'absolute', bottom: 18, right: 0, width: 36, height: 36 }}/>
+        {/* 특가세트 스트립 */}
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'rgba(0,0,0,0.75)', padding: '4px 6px' }}>
           <span style={{ color: WHITE, fontSize: 10, fontWeight: 700 }}>특가 세트</span>
-          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: 8 }}>SERIES EDITION</span>
         </div>
       </div>
       {/* meta */}
