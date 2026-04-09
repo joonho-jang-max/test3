@@ -1,11 +1,14 @@
 import './index.css'
-import Component from './Component'
 import FloatingCat from './FloatingCat'
 
 function App() {
   return (
     <>
-      <Component />
+      <img
+        src={`${import.meta.env.BASE_URL}design.png`}
+        alt="하이"
+        style={{ display: 'block', width: '100%', maxWidth: 375 }}
+      />
       <FloatingCat />
     </>
   )
