@@ -180,7 +180,7 @@ const TOOLBAR_ITEMS = ['home', 'freebox', 'event', 'search', 'library']
 
 function BottomNav() {
   return (
-    <div style={{ position: 'sticky', bottom: 0, background: WHITE, borderTop: '1px solid #e5e5e5', display: 'flex', height: 44, alignItems: 'center', zIndex: 10 }}>
+    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: WHITE, borderTop: '1px solid #e5e5e5', display: 'flex', height: 44, alignItems: 'center', zIndex: 10 }}>
       {TOOLBAR_ITEMS.map((name) => (
         <div key={name} style={{ flex: 1, cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <img src={`${BASE}figma/toolbar_${name}.png`} style={{ width: 75, height: 38, display: 'block' }} alt={name}/>
@@ -194,7 +194,7 @@ function BottomNav() {
 export default function Component() {
   const [activeTab, setActiveTab] = useState(0)
   return (
-    <div style={{ background: LIGHT_BG, minHeight: '100vh', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
+    <div style={{ background: LIGHT_BG, minHeight: '100vh', paddingBottom: 44, fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
       <GNB />
       <TabBar active={activeTab} setActive={setActiveTab} />
       <BenefitBanner />
