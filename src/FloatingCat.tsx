@@ -55,7 +55,7 @@ export default function FloatingCat() {
   return (
     <div style={{
       position: 'fixed',
-      bottom: 80,
+      bottom: 60,
       right: 16,
       width: SIZE,
       height: SIZE,

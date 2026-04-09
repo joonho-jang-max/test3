@@ -51,22 +51,13 @@ const SLIDES = [
 ]
 
 function BenefitBanner() {
-  const [cur, setCur] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
 
-  function onScroll() {
-    const el = ref.current
-    if (!el) return
-    const idx = Math.round(el.scrollLeft / (el.clientWidth - 16))
-    setCur(idx)
-  }
-
   return (
-    <div style={{ background: LIGHT_BG, paddingBottom: 8 }}>
-      {/* 스크롤 컨테이너 */}
+    /* Benefit 전체: 264px, paddingTop 8 */
+    <div style={{ background: LIGHT_BG, paddingTop: 8, height: 264, overflow: 'hidden' }}>
       <div
         ref={ref}
-        onScroll={onScroll}
         style={{
           display: 'flex',
           overflowX: 'auto',
@@ -74,20 +65,20 @@ function BenefitBanner() {
           scrollbarWidth: 'none',
           gap: 8,
           paddingLeft: 16,
-          paddingRight: 16,
-          paddingTop: 12,
+          height: 256,
         }}
       >
         {SLIDES.map((slide, i) => (
           <div key={i} style={{
             position: 'relative',
             flexShrink: 0,
-            width: 'calc(100% - 32px)',
+            width: 342,
+            height: 256,
             borderRadius: 4,
             overflow: 'hidden',
             scrollSnapAlign: 'start',
           }}>
-            <img src={`${BASE}figma/${slide.src}`} style={{ display: 'block', width: '100%' }} alt=""/>
+            <img src={`${BASE}figma/${slide.src}`} style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} alt=""/>
             {slide.showBadges && <>
               <span style={{
                 position: 'absolute', top: 10, left: 10,
@@ -105,17 +96,6 @@ function BenefitBanner() {
               fontSize: 11, fontWeight: 600, padding: '2px 7px', borderRadius: 10,
             }}>{i + 1}/{SLIDES.length} ›</span>
           </div>
-        ))}
-      </div>
-
-      {/* dot indicator */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 4, paddingTop: 6 }}>
-        {SLIDES.map((_, i) => (
-          <div key={i} style={{
-            width: i === cur ? 14 : 6, height: 4, borderRadius: 2,
-            background: i === cur ? DARK : 'rgba(0,0,0,0.2)',
-            transition: 'width 0.2s',
-          }}/>
         ))}
       </div>
     </div>
@@ -180,14 +160,14 @@ function BookSection() {
   )
 }
 
-/* ── ShortcutRow  — 숏컷명 14px w700 ─── */
+/* ── ShortcutRow  — 36px, r=4, gap=4 ─── */
 function ShortcutRow() {
   return (
-    <div style={{ background: LIGHT_BG, padding: '10px 12px', display: 'flex', gap: 8 }}>
+    <div style={{ background: LIGHT_BG, height: 36, display: 'flex', alignItems: 'center', paddingLeft: 16, paddingRight: 16, gap: 4 }}>
       {['숏컷명', '숏컷명', '숏컷명', '숏컷명', '숏컷명'].map((s, i) => (
         <button key={i} style={{
-          flex: 1, background: WHITE, border: 'none', borderRadius: 8,
-          padding: '10px 0', color: DARK, fontSize: 14, fontWeight: 700,
+          flex: 1, background: WHITE, border: 'none', borderRadius: 4,
+          height: 36, color: DARK, fontSize: 14, fontWeight: 700,
           cursor: 'pointer', boxShadow: '0 1px 3px rgba(0,0,0,0.08)', minWidth: 0,
         }}>{s}</button>
       ))}
@@ -200,9 +180,9 @@ const TOOLBAR_ITEMS = ['home', 'freebox', 'event', 'search', 'library']
 
 function BottomNav() {
   return (
-    <div style={{ position: 'sticky', bottom: 0, background: WHITE, borderTop: '1px solid #e5e5e5', display: 'flex', zIndex: 10 }}>
+    <div style={{ position: 'sticky', bottom: 0, background: WHITE, borderTop: '1px solid #e5e5e5', display: 'flex', height: 44, alignItems: 'center', zIndex: 10 }}>
       {TOOLBAR_ITEMS.map((name) => (
-        <div key={name} style={{ flex: 1, cursor: 'pointer', display: 'flex', justifyContent: 'center' }}>
+        <div key={name} style={{ flex: 1, cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <img src={`${BASE}figma/toolbar_${name}.png`} style={{ width: 75, height: 38, display: 'block' }} alt={name}/>
         </div>
       ))}
