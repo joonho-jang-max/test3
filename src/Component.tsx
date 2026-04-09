@@ -8,7 +8,6 @@ const LIGHT_BG = '#f7f6f3'
 const WHITE    = '#fff'
 const DARK     = '#111'
 const GRAY     = '#999'
-const RED      = '#ff3b30'
 const GREEN    = '#16a34a'
 
 /* ── GNB ──────────────────────────────── */
@@ -196,31 +195,15 @@ function ShortcutRow() {
   )
 }
 
-/* ── BottomNav  — 라벨 10px ───────────── */
+/* ── BottomNav  — Figma 추출 이미지 ───── */
+const TOOLBAR_ITEMS = ['home', 'freebox', 'event', 'search', 'library']
+
 function BottomNav() {
-  const items = [
-    { label: '홈', active: true,
-      icon: <div style={{ width: 28, height: 28, background: DARK, borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ color: WHITE, fontSize: 15, fontWeight: 900 }}>S</span></div> },
-    { label: '무료박스',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill={GRAY}><path d="M20 6h-2.18c.07-.44.18-.86.18-1.3C18 2.13 15.87 0 13.3 0a3.5 3.5 0 00-2.76 1.34L9 3l-1.54-1.66A3.5 3.5 0 004.7 0C2.13 0 0 2.13 0 4.7c0 .44.11.86.18 1.3H0v2h20V6zm0 3H0v12h20V9z" transform="translate(2 2) scale(.83)"/></svg> },
-    { label: '이벤트', dot: true,
-      icon: <div style={{ position: 'relative' }}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill={GRAY}><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-2 .9-2 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-        <div style={{ position: 'absolute', top: -4, right: -4, background: RED, borderRadius: 10, padding: '1px 5px' }}>
-          <span style={{ color: WHITE, fontSize: 8, fontWeight: 700 }}>참여</span>
-        </div>
-      </div> },
-    { label: '검색',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill={GRAY}><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg> },
-    { label: '보관함',
-      icon: <svg width="24" height="24" viewBox="0 0 24 24" fill={GRAY}><path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg> },
-  ]
   return (
-    <div style={{ position: 'sticky', bottom: 0, background: WHITE, borderTop: '1px solid #e5e5e5', display: 'flex', height: 50, alignItems: 'flex-start', paddingTop: 8, zIndex: 10 }}>
-      {items.map((item, i) => (
-        <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, cursor: 'pointer' }}>
-          {item.icon}
-          <span style={{ color: (item as any).active ? DARK : GRAY, fontSize: 10, fontWeight: (item as any).active ? 700 : 400 }}>{item.label}</span>
+    <div style={{ position: 'sticky', bottom: 0, background: WHITE, borderTop: '1px solid #e5e5e5', display: 'flex', zIndex: 10 }}>
+      {TOOLBAR_ITEMS.map((name) => (
+        <div key={name} style={{ flex: 1, cursor: 'pointer', display: 'flex', justifyContent: 'center' }}>
+          <img src={`${BASE}figma/toolbar_${name}.png`} style={{ width: 75, height: 38, display: 'block' }} alt={name}/>
         </div>
       ))}
     </div>
