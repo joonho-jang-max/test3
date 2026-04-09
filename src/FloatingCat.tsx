@@ -55,15 +55,15 @@ export default function FloatingCat() {
   return (
     <div style={{
       position: 'fixed',
-      bottom: 76,
+      bottom: 82,  /* toolbar 50 + 여백 16 + 16 */
       right: 16,
       zIndex: 999,
       cursor: 'pointer',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
+      alignItems: 'flex-end',  /* 우측 정렬 */
     }}>
-      {/* 말풍선 */}
+      {/* 말풍선: 우측 정렬, 텍스트 늘수록 왼쪽으로 */}
       <div style={{
         position: 'relative',
         background: '#111',
@@ -71,18 +71,17 @@ export default function FloatingCat() {
         fontSize: 12,
         fontWeight: 600,
         fontFamily: '"Pretendard", -apple-system, BlinkMacSystemFont, sans-serif',
-        padding: '6px 10px',
+        padding: '6px 12px',
         borderRadius: 20,
         whiteSpace: 'nowrap',
         marginBottom: 3,
       }}>
         일이삼사오육칠팔구십
-        {/* 꼬리 */}
+        {/* 꼬리: cat 이미지 중앙(31px from right) */}
         <div style={{
           position: 'absolute',
           bottom: -5,
-          left: '50%',
-          transform: 'translateX(-50%)',
+          right: 26,  /* 31 - 5(half tail width) */
           width: 0,
           height: 0,
           borderLeft: '5px solid transparent',
