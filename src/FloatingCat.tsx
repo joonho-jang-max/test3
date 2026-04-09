@@ -74,19 +74,19 @@ export default function FloatingCat() {
         padding: '6px 12px',
         borderRadius: 20,
         whiteSpace: 'nowrap',
-        marginBottom: 9,  /* 꼬리 끝(~6px) + gap(3px) */
+        marginBottom: 10,  /* 꼬리 절반 7px + gap 3px */
       }}>
         일이삼사오육칠팔구십
-        {/* 꼬리: 회전 사각형 r=1, cat 중앙 정렬 */}
+        {/* 꼬리: 다이아몬드, 위쪽 절반이 버블 뒤에 숨음 */}
         <div style={{
           position: 'absolute',
-          bottom: -4,   /* bubble 안으로 4px 걸침 */
-          right: 27,    /* cat 중앙(31px) - 사각형 절반(4px) */
-          width: 8,
-          height: 8,
+          bottom: -7,
+          right: 24,   /* cat 중앙(31px) - 다이아 절반(7px) */
+          width: 14,
+          height: 14,
           background: '#111',
           transform: 'rotate(45deg)',
-          borderRadius: 1,
+          borderRadius: 0.84,
         }}/>
       </div>
       <canvas
