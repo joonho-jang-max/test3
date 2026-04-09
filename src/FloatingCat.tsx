@@ -55,13 +55,41 @@ export default function FloatingCat() {
   return (
     <div style={{
       position: 'fixed',
-      bottom: 76,  /* toolbar 44 + 여백 16 + 16 */
+      bottom: 76,
       right: 16,
-      width: SIZE,
-      height: SIZE,
       zIndex: 999,
       cursor: 'pointer',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
     }}>
+      {/* 말풍선 */}
+      <div style={{
+        position: 'relative',
+        background: '#111',
+        color: '#fff',
+        fontSize: 12,
+        fontWeight: 600,
+        fontFamily: '"Pretendard", -apple-system, BlinkMacSystemFont, sans-serif',
+        padding: '6px 10px',
+        borderRadius: 20,
+        whiteSpace: 'nowrap',
+        marginBottom: 3,
+      }}>
+        일이삼사오육칠팔구십
+        {/* 꼬리 */}
+        <div style={{
+          position: 'absolute',
+          bottom: -5,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: 0,
+          height: 0,
+          borderLeft: '5px solid transparent',
+          borderRight: '5px solid transparent',
+          borderTop: '6px solid #111',
+        }}/>
+      </div>
       <canvas
         ref={canvasRef}
         style={{ width: SIZE, height: SIZE, display: 'block' }}
