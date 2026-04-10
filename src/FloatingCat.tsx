@@ -4,7 +4,7 @@ const TOTAL_FRAMES = 156
 const FPS = 24
 const BASE = import.meta.env.BASE_URL
 const SIZE = 64
-const SHRUNK_WIDTH = 88
+const SHRUNK_WIDTH = 82
 
 export default function FloatingCat({ onClick }: { onClick?: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -71,7 +71,7 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
   /* 스크롤 시 한번만 줄어듦 */
   useEffect(() => {
     function onScroll() {
-      if (!shrunkRef.current) {
+      if (!shrunkRef.current && window.scrollY >= 10) {
         shrunkRef.current = true
         setShrunk(true)
       }
@@ -126,7 +126,7 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
             paddingBottom: 2,
             whiteSpace: 'nowrap',
             opacity: shrunk ? 0 : 1,
-            transition: 'opacity 0.2s ease-in-out',
+            transition: 'opacity 0.25s ease-in-out',
           }}>
             일이삼사오육칠팔구십
           </span>
@@ -139,14 +139,16 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
             paddingBottom: 2,
             whiteSpace: 'nowrap',
             opacity: shrunk ? 1 : 0,
-            transition: shrunk ? 'opacity 0.25s ease-in-out 0.3s' : 'none',
+            transition: shrunk ? 'opacity 0.25s ease-in-out 0.5s' : 'none',
           }}>
-            리워드센터
+            리워드 미션
           </span>
           {/* 인라인 스페이서: 컨테이너 너비를 텍스트 기준으로 잡아줌 */}
+          {/* 초기 너비 확보용 스페이서 */}
           <span style={{ visibility: 'hidden', pointerEvents: 'none' }}>
             일이삼사오육칠팔구십
           </span>
+
         </div>
 
         {/* 레드닷: pill overflow 밖 wrapper에 배치 */}
