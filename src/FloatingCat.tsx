@@ -87,24 +87,24 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
         paddingBottom: 2,
         borderRadius: 20,
         whiteSpace: 'nowrap',
-        marginBottom: 6,   /* 꼬리 절반 6px 노출 */
-        boxShadow: 'none',
-        border: '1px solid #00dc54',
+        marginBottom: 6,
         opacity: bubbleVisible ? 1 : 0,
         transition: 'opacity 0.3s ease',
         pointerEvents: bubbleVisible ? 'auto' : 'none',
       }}>
         일이삼사오육칠팔구십
-        {/* 버블 하단 border 연결부 가리개 */}
+        {/* 우측 상단 알림 도트 */}
         <div style={{
           position: 'absolute',
-          bottom: -1,
-          right: 28,
-          width: 10,
-          height: 2,
-          background: '#111',
+          top: -3,
+          right: -3,
+          width: 6,
+          height: 6,
+          borderRadius: '50%',
+          background: '#FF2F5D',
+          boxShadow: '0 0 0 1.5px #fff',
         }}/>
-        {/* 꼬리: 아래 절반만 노출, stroke로 외곽선 연결 */}
+        {/* 꼬리: 아래 절반만 노출 */}
         <div style={{
           position: 'absolute',
           bottom: -7,
@@ -121,9 +121,6 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
             <path
               d="M5 1 Q5.8 0 10 7 Q5.8 14 5 13 Q4.2 14 0 7 Q4.2 0 5 1 Z"
               fill="#111"
-              stroke="#00dc54"
-              strokeWidth="1"
-              strokeLinejoin="round"
             />
           </svg>
         </div>
