@@ -183,12 +183,13 @@ export default function RewardPage({ onBack }: { onBack: () => void }) {
           <span style={{ marginLeft: 'auto', fontSize: 15, fontWeight: 500, color: '#555' }}>내역보기</span>
         </div>
 
-        {/* 고양이 캔버스: x=111, y=11, w=153, h=238 */}
+        {/* 고양이 캔버스: 가운데 정렬, nav~쿠키조각 사이 공간에 맞춤 */}
         <canvas ref={canvasRef} style={{
           position: 'absolute',
-          left: `${(111 / FW) * 100}%`,
-          top: `${(11 / FH) * 100}%`,
-          width: `${(199 / FW) * 100}%`,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          top: `${(44 / FH) * 100}%`,
+          width: `${(128 / FW) * 100}%`,
           display: 'block',
         }} />
 
