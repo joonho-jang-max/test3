@@ -5,7 +5,7 @@ const FPS = 24
 const BASE = import.meta.env.BASE_URL
 const SIZE = 64
 
-export default function FloatingCat() {
+export default function FloatingCat({ onClick }: { onClick?: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const frameRef = useRef(0)
   const imagesRef = useRef<HTMLImageElement[]>([])
@@ -73,13 +73,13 @@ export default function FloatingCat() {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'flex-end',
-    }}>
+    }} onClick={onClick}>
       <div style={{
         position: 'relative',
         background: '#111',
         color: '#fff',
         fontSize: 12,
-        fontWeight: 600,
+        fontWeight: 500,
         fontFamily: '"Pretendard", -apple-system, BlinkMacSystemFont, sans-serif',
         padding: '0 12px',
         height: 28,
