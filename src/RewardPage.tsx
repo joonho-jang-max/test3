@@ -29,7 +29,7 @@ function SlotDigit({ target, delay }: { target: number; delay: number }) {
   }
 
   return (
-    <div style={{ width: 24, height: DIGIT_H, overflow: 'hidden', display: 'inline-block' }}>
+    <div style={{ width: 30, height: DIGIT_H, overflow: 'hidden', display: 'inline-block' }}>
       <div ref={ref} style={{ transform: 'translateY(0)', willChange: 'transform' }}>
         {items.map((n, i) => (
           <div key={i} style={{
