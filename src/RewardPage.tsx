@@ -138,22 +138,19 @@ export default function RewardPage({ onBack }: { onBack: () => void }) {
         </div>
       </div>
 
-      {/* ── 하단 섹션: 겹침 없이 flow ── */}
-      <div style={{ padding: '16px 16px 0', position: 'relative' }}>
-        {/* mi (시작해볼까): 우측 정렬 */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
-          <img src={`${BASE}figma/reward_mi.png`} style={{ width: 86, display: 'block' }} alt="" />
+      {/* ── 하단 섹션 ── */}
+      <div style={{ padding: '8px 16px 0', position: 'relative' }}>
+        {/* 현재 쿠키조각 레이블 */}
+        <div style={{ fontSize: 15, fontWeight: 600, color: '#000', letterSpacing: -0.15, lineHeight: '18px', marginBottom: 2 }}>
+          현재 쿠키조각
         </div>
-
-        {/* 현재 쿠키조각 + 슬롯 숫자 */}
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ fontSize: 15, fontWeight: 600, color: '#000', letterSpacing: -0.15, lineHeight: '18px', marginBottom: 4 }}>
-            현재 쿠키조각
-          </div>
+        {/* 1221 + /100개 + mi 같은 줄 */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
             <SlotNumber value={TARGET} />
             <span style={{ fontSize: 14, fontWeight: 700, color: '#000', lineHeight: `${DIGIT_H}px` }}>/100개</span>
           </div>
+          <img src={`${BASE}figma/reward_mi.png`} style={{ width: 86, display: 'block', flexShrink: 0 }} alt="" />
         </div>
 
         {/* Button_R */}
