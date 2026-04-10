@@ -126,7 +126,7 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
             opacity: shrunk ? 0 : 1,
             transition: 'opacity 0.25s ease-in-out',
           }}>
-            오늘의쿠키미션을확인해보세요!
+            오늘 쿠키미션 확인해보세요!
           </span>
           {/* 리워드 미션 텍스트 (shrunk 후 페이드인, 가운데 정렬) */}
           <span style={{
@@ -146,7 +146,7 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
           {/* 인라인 스페이서: 컨테이너 너비를 텍스트 기준으로 잡아줌 */}
           {/* 초기 너비 확보용 스페이서 */}
           <span style={{ visibility: 'hidden', pointerEvents: 'none' }}>
-            오늘의쿠키미션을확인해보세요!
+            오늘 쿠키미션 확인해보세요!
           </span>
 
         </div>
