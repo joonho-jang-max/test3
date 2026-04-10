@@ -189,7 +189,7 @@ export default function RewardPage({ onBack }: { onBack: () => void }) {
           left: '50%',
           transform: 'translateX(-50%)',
           top: `${(44 / FH) * 100}%`,
-          width: `${(128 / FW) * 100}%`,
+          width: `${(200 / FW) * 100}%`,
           display: 'block',
         }} />
 
