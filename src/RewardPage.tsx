@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 
 const BASE = import.meta.env.BASE_URL
 const TARGET = 1221
-const DIGIT_H = 42  // font-size와 맞춤
+const DIGIT_H = 42
 
-/* 슬롯머신 스타일 단일 자릿수 */
+/* 슬롯머신: 목표 숫자 위아래 2개만 롤링 */
 function SlotDigit({ target, delay }: { target: number; delay: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const [started, setStarted] = useState(false)
@@ -16,25 +16,20 @@ function SlotDigit({ target, delay }: { target: number; delay: number }) {
 
   useEffect(() => {
     if (!started || !ref.current) return
-    // 0→target 까지 스크롤 (숫자를 위에서 아래로 쌓아두고 위로 스크롤)
-    const totalItems = 10 + target + 1  // 0~9 패딩 + 0~target
-    const finalOffset = -(totalItems - 1) * DIGIT_H
+    const ROLL = 2  // target 앞에 표시할 숫자 개수
     ref.current.style.transition = `transform 1.4s cubic-bezier(0.17, 0.67, 0.35, 1.0)`
-    ref.current.style.transform = `translateY(${finalOffset}px)`
-  }, [started, target])
+    ref.current.style.transform = `translateY(${-ROLL * DIGIT_H}px)`
+  }, [started])
 
-  // 0~9 * 2 + 0~target 으로 충분한 숫자 나열
+  // target 앞으로 2개 → target 까지 총 3개 항목
+  const ROLL = 2
   const items: number[] = []
-  for (let i = 0; i < 10; i++) items.push(i)
-  for (let i = 0; i <= target; i++) items.push(i)
+  for (let i = ROLL; i >= 0; i--) {
+    items.push(((target - i) % 10 + 10) % 10)
+  }
 
   return (
-    <div style={{
-      width: 28,
-      height: DIGIT_H,
-      overflow: 'hidden',
-      display: 'inline-block',
-    }}>
+    <div style={{ width: 28, height: DIGIT_H, overflow: 'hidden', display: 'inline-block' }}>
       <div ref={ref} style={{ transform: 'translateY(0)', willChange: 'transform' }}>
         {items.map((n, i) => (
           <div key={i} style={{
@@ -59,7 +54,7 @@ function SlotNumber({ value }: { value: number }) {
   return (
     <div style={{ display: 'inline-flex', alignItems: 'center' }}>
       {digits.map((d, i) => (
-        <SlotDigit key={i} target={d} delay={i * 100} />
+        <SlotDigit key={i} target={d} delay={i * 120} />
       ))}
     </div>
   )
@@ -73,7 +68,6 @@ export default function RewardPage({ onBack }: { onBack: () => void }) {
       background: '#fff',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     }}>
-      {/* 디자인 이미지 위에 숫자 오버레이 */}
       <div style={{ position: 'relative' }}>
         <img
           src={`${BASE}figma/fin_page.png`}
@@ -92,8 +86,20 @@ export default function RewardPage({ onBack }: { onBack: () => void }) {
             cursor: 'pointer',
           }}
         />
-        {/* 1221 위치: rel_x=16 rel_y=308, frame h=468
-            이미지 비율에 맞게 % 로 */}
+        {/* 현재 쿠키조각 레이블 */}
+        <div style={{
+          position: 'absolute',
+          top: `${(290 / 468) * 100}%`,
+          left: `${(16 / 375) * 100}%`,
+          fontSize: 15,
+          fontWeight: 600,
+          color: '#000',
+          letterSpacing: -0.15,
+          lineHeight: '18px',
+        }}>
+          현재 쿠키조각
+        </div>
+        {/* 1221 슬롯 숫자 + /100개 */}
         <div style={{
           position: 'absolute',
           top: `${(308 / 468) * 100}%`,
