@@ -112,8 +112,7 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
           /* 측정 전: max-content로 자연 너비, 측정 후: px로 고정/애니메이션 */
           width: initWidth === null ? 'max-content' : pillWidth,
           padding: '0 12px',
-          paddingBottom: 2,
-          lineHeight: '26px',
+          lineHeight: '28px',
           transition: canTransition ? 'width 0.45s ease-in-out' : 'none',
           boxSizing: 'border-box',
         }}>
@@ -122,8 +121,7 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
             position: 'absolute',
             top: 0,
             left: 12,
-            lineHeight: '26px',
-            paddingBottom: 2,
+            lineHeight: '28px',
             whiteSpace: 'nowrap',
             opacity: shrunk ? 0 : 1,
             transition: 'opacity 0.25s ease-in-out',
