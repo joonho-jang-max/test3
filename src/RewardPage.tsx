@@ -3,8 +3,15 @@ import { useEffect, useRef, useState } from 'react'
 const BASE = import.meta.env.BASE_URL
 const TARGET = 1221
 const DIGIT_H = 42
+const FPS = 24
 
-/* 슬롯머신: 목표 숫자 위아래 2개만 롤링 */
+// 아이들: 1~17 루프 / 액션: 18~20, 22~49 (21번 없음)
+const IDLE_FRAMES = Array.from({ length: 17 }, (_, i) => i + 1)
+const ACTION_FRAMES = [
+  ...Array.from({ length: 3 }, (_, i) => i + 18),   // 18,19,20
+  ...Array.from({ length: 28 }, (_, i) => i + 22),   // 22~49
+]
+
 function SlotDigit({ target, delay }: { target: number; delay: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const [started, setStarted] = useState(false)
@@ -16,12 +23,11 @@ function SlotDigit({ target, delay }: { target: number; delay: number }) {
 
   useEffect(() => {
     if (!started || !ref.current) return
-    const ROLL = 4  // target 앞에 표시할 숫자 개수
+    const ROLL = 4
     ref.current.style.transition = `transform 1.4s cubic-bezier(0.17, 0.67, 0.35, 1.0)`
     ref.current.style.transform = `translateY(${-ROLL * DIGIT_H}px)`
   }, [started])
 
-  // target 앞으로 2개 → target 까지 총 3개 항목
   const ROLL = 4
   const items: number[] = []
   for (let i = ROLL; i >= 0; i--) {
@@ -61,6 +67,67 @@ function SlotNumber({ value }: { value: number }) {
 }
 
 export default function RewardPage({ onBack }: { onBack: () => void }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const modeRef = useRef<'idle' | 'action'>('idle')
+  const frameIdxRef = useRef(0)
+  const rafRef = useRef(0)
+  const imagesRef = useRef<Record<number, HTMLImageElement>>({})
+  const loadedRef = useRef(0)
+
+  useEffect(() => {
+    const canvas = canvasRef.current!
+    const dpr = window.devicePixelRatio || 2
+    const displayW = canvas.offsetWidth
+    const displayH = canvas.offsetHeight
+    canvas.width = displayW * dpr
+    canvas.height = displayH * dpr
+    const ctx = canvas.getContext('2d')!
+
+    const allFrameNums = [...IDLE_FRAMES, ...ACTION_FRAMES]
+
+    allFrameNums.forEach(n => {
+      const img = new Image()
+      img.src = `${BASE}catwalk/cat_${n}.png`
+      img.onload = () => {
+        imagesRef.current[n] = img
+        loadedRef.current++
+        if (loadedRef.current === allFrameNums.length) startLoop()
+      }
+    })
+
+    let last = 0
+    const interval = 1000 / FPS
+
+    function startLoop() {
+      function tick(ts: number) {
+        if (ts - last >= interval) {
+          const frames = modeRef.current === 'idle' ? IDLE_FRAMES : ACTION_FRAMES
+          ctx.clearRect(0, 0, canvas.width, canvas.height)
+          const img = imagesRef.current[frames[frameIdxRef.current]]
+          if (img) ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+          frameIdxRef.current++
+          if (frameIdxRef.current >= frames.length) {
+            if (modeRef.current === 'action') modeRef.current = 'idle'
+            frameIdxRef.current = 0
+          }
+          last = ts
+        }
+        rafRef.current = requestAnimationFrame(tick)
+      }
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [])
+
+  const handleButtonClick = () => {
+    if (modeRef.current !== 'action') {
+      modeRef.current = 'action'
+      frameIdxRef.current = 0
+    }
+  }
+
   return (
     <div style={{
       width: '100%',
@@ -74,18 +141,37 @@ export default function RewardPage({ onBack }: { onBack: () => void }) {
           style={{ width: '100%', display: 'block' }}
           alt="reward"
         />
-        {/* 뒤로가기: 이미지 내 Nav 위치에 투명 터치 영역 */}
-        <div
-          onClick={onBack}
-          style={{
-            position: 'absolute',
-            top: `${(50 / 468) * 100}%`,
-            left: 0,
-            width: `${(44 / 375) * 100}%`,
-            height: `${(44 / 468) * 100}%`,
-            cursor: 'pointer',
-          }}
-        />
+
+        {/* 뒤로가기 투명 터치 영역 */}
+        <div onClick={onBack} style={{
+          position: 'absolute',
+          top: `${(50 / 468) * 100}%`,
+          left: 0,
+          width: `${(44 / 375) * 100}%`,
+          height: `${(44 / 468) * 100}%`,
+          cursor: 'pointer',
+        }} />
+
+        {/* 고양이 워크 캔버스: 배경 고양이 위치(x=85,y=0,212×310) */}
+        <canvas ref={canvasRef} style={{
+          position: 'absolute',
+          left: `${(85 / 375) * 100}%`,
+          top: 0,
+          width: `${(212 / 375) * 100}%`,
+          height: `${(310 / 468) * 100}%`,
+          display: 'block',
+        }} />
+
+        {/* 쿠키로교환하기 버튼 투명 오버레이 */}
+        <div onClick={handleButtonClick} style={{
+          position: 'absolute',
+          top: `${(371 / 468) * 100}%`,
+          left: `${(16 / 375) * 100}%`,
+          width: `${(343 / 375) * 100}%`,
+          height: `${(48 / 468) * 100}%`,
+          cursor: 'pointer',
+        }} />
+
         {/* 현재 쿠키조각 레이블 */}
         <div style={{
           position: 'absolute',
@@ -99,7 +185,8 @@ export default function RewardPage({ onBack }: { onBack: () => void }) {
         }}>
           현재 쿠키조각
         </div>
-        {/* 1221 슬롯 숫자 + /100개 */}
+
+        {/* 1221 슬롯 숫자 */}
         <div style={{
           position: 'absolute',
           top: `${(308 / 468) * 100}%`,
