@@ -82,8 +82,8 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
         {/* 우측 상단 알림 도트 */}
         <div style={{
           position: 'absolute',
-          top: -2,
-          right: -2,
+          top: 2,
+          right: 2,
           width: 6,
           height: 6,
           borderRadius: '50%',
