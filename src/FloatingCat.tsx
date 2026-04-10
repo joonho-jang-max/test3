@@ -96,17 +96,17 @@ export default function FloatingCat() {
           position: 'absolute',
           bottom: -6,
           right: 29,
-          width: 6,
+          width: 7,
           height: 6,
           overflow: 'hidden',
         }}>
           <svg
-            width="6" height="12"
-            viewBox="0 0 6 12"
+            width="7" height="12"
+            viewBox="0 0 7 12"
             style={{ position: 'absolute', top: -6, left: 0, display: 'block' }}
           >
             <path
-              d="M3 0.8 Q3.8 0 6 6 Q3.8 12 3 11.2 Q2.2 12 0 6 Q2.2 0 3 0.8 Z"
+              d="M3.5 0.8 Q4.3 0 7 6 Q4.3 12 3.5 11.2 Q2.7 12 0 6 Q2.7 0 3.5 0.8 Z"
               fill="#111"
             />
           </svg>
