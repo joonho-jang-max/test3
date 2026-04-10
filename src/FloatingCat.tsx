@@ -4,7 +4,7 @@ const TOTAL_FRAMES = 156
 const FPS = 24
 const BASE = import.meta.env.BASE_URL
 const SIZE = 64
-const SHRUNK_WIDTH = 82
+const SHRUNK_WIDTH = 74
 
 export default function FloatingCat({ onClick }: { onClick?: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -130,14 +130,16 @@ export default function FloatingCat({ onClick }: { onClick?: () => void }) {
           }}>
             일이삼사오육칠팔구십
           </span>
-          {/* 리워드센터 텍스트 (shrunk 후 페이드인) */}
+          {/* 리워드 미션 텍스트 (shrunk 후 페이드인, 가운데 정렬) */}
           <span style={{
             position: 'absolute',
             top: 0,
-            left: 12,
+            left: 0,
+            right: 0,
             lineHeight: '26px',
             paddingBottom: 2,
             whiteSpace: 'nowrap',
+            textAlign: 'center',
             opacity: shrunk ? 1 : 0,
             transition: shrunk ? 'opacity 0.25s ease-in-out 0.5s' : 'none',
           }}>
