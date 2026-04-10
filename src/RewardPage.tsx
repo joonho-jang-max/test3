@@ -148,9 +148,9 @@ export default function RewardPage({ onBack }: { onBack: () => void }) {
           src={`${BASE}figma/reward_bg.png`}
           style={{
             position: 'absolute',
-            left: `${(-52 / FW) * 100}%`,
+            left: 0,
             top: 0,
-            width: `${(478 / FW) * 100}%`,
+            width: '100%',
             display: 'block',
             pointerEvents: 'none',
           }}
