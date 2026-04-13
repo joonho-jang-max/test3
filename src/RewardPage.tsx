@@ -43,7 +43,7 @@ function SlotNumber({ value }: { value: number }) {
   const digits = String(value).split('').map(Number)
   return (
     <div style={{ display: 'inline-flex', alignItems: 'center' }}>
-      {digits.map((d, i) => <SlotDigit key={i} target={d} delay={i * 120} />)}
+      {digits.map((d, i) => <SlotDigit key={i} target={d} delay={i * 60} />)}
     </div>
   )
 }
